@@ -11,11 +11,9 @@ CONFIG -= app_bundle
 SOURCES += \
         Common/common.cpp \
         Common/tdbloger.cpp \
-        Common/thttpquery.cpp \
-        common.cpp \
         main.cpp \
         tconfig.cpp \
-        ttopaz.cpp
+        tdoctopaz.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -25,8 +23,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Common/common.h \
     Common/tdbloger.h \
-    Common/thttpquery.h \
-    common.h \
     tconfig.h \
-    ttopaz.h \
-    ttopaz.h
+    tdoctopaz.h \
+    tdoctopaz.h
+

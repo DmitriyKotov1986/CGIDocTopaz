@@ -8,34 +8,25 @@
 
 #include "tconfig.h"
 
-namespace CGITopaz {
+namespace CGIDocTopaz
+{
 
-class TTopaz
+class TDocTopaz
 {
 public:
-    explicit TTopaz(CGITopaz::TConfig* cfg);
-    ~TTopaz();
+    explicit TDocTopaz(TConfig* cfg);
+    ~TDocTopaz();
 
 public:
     int run(const QString& XMLText);
     QString errorString() const { return _errorString; }
 
 private:
-    typedef struct {
-        QString Body;
-        int number;
-        int smena;
-        QString type;
-        QDateTime dateTime;
-        QString creater;
-    } TDocInfo;
-
-    typedef QList<TDocInfo> TDocsInfoList;
-
     QSqlDatabase _db;
     QString _errorString;
+
 };
 
-} //namespace CGITopaz
+} //namespace CGIDocTopaz
 
 #endif // TSYNC_H

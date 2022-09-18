@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QDir>
 
-using namespace CGITopaz;
+using namespace CGIDocTopaz;
 
 TConfig::TConfig(const QString& configFileName) :
     _configFileName(configFileName)

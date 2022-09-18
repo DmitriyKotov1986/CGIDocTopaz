@@ -6,24 +6,24 @@
 //My
 #include "Common/common.h"
 #include "tconfig.h"
-#include "ttopaz.h"
+#include "tdoctopaz.h"
 
-using namespace CGITopaz;
+using namespace CGIDocTopaz;
 
 using namespace Common;
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QCoreApplication::setApplicationName("CGITopaz");
+    QCoreApplication::setApplicationName("CGIDocTopaz");
     QCoreApplication::setOrganizationName("OOO SA");
     QCoreApplication::setApplicationVersion(QString("Version:0.1a Build: %1 %2").arg(__DATE__).arg(__TIME__));
 
     setlocale(LC_CTYPE, ""); //настраиваем локаль
 
-    QString configFileName = a.applicationDirPath() +"/CGITopaz.ini";
+    QString configFileName = a.applicationDirPath() +"/CGIDocTopaz.ini";
 
-    CGITopaz::TConfig* cfg = TConfig::config(configFileName);
+    CGIDocTopaz::TConfig* cfg = TConfig::config(configFileName);
 
     if (cfg->isError()) {
         QString errorMsg = "Error load configuration: " + cfg->errorString();
@@ -44,12 +44,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    CGITopaz::TTopaz topaz(cfg);
+    CGIDocTopaz::TDocTopaz docTopaz(cfg);
 
-    int res = topaz.run(buf); //обрабатываем пришедшие данные
+    int res = docTopaz.run(buf); //обрабатываем пришедшие данные
 
     if (res != 0 ) {
-        writeLogFile("Error parse XML: " + topaz.errorString(), buf);
+        writeLogFile("Error parse XML: " + docTopaz.errorString(), buf);
     }
     else {
         qDebug() << "OK";

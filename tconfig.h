@@ -5,7 +5,7 @@
 #include <QString>
 #include <QFile>
 
-namespace CGITopaz {
+namespace CGIDocTopaz {
 
 class TConfig final
 {
