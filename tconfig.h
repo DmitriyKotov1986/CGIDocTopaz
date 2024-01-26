@@ -10,16 +10,8 @@ namespace CGIDocTopaz {
 class TConfig final
 {
 public:
-    static TConfig* config(const QString& configFileName = "")
-    {
-        static TConfig* _config = nullptr;
-
-        if (_config == nullptr){
-            _config = new TConfig(configFileName);
-        }
-
-        return _config;
-    };
+    static TConfig* config(const QString& configFileName = "");
+    static void deleteConfig();
 
 private:
     explicit TConfig(const QString& configFileName);

@@ -7,6 +7,27 @@
 
 using namespace CGIDocTopaz;
 
+static TConfig* configPtr = nullptr;
+
+TConfig* TConfig::config(const QString& configFileName)
+{
+    if (configPtr == nullptr)
+    {
+        configPtr = new TConfig(configFileName);
+    }
+
+    return configPtr;
+};
+
+void TConfig::deleteConfig()
+{
+    Q_CHECK_PTR(configPtr);
+
+    delete configPtr;
+
+    configPtr = nullptr;
+}
+
 TConfig::TConfig(const QString& configFileName) :
     _configFileName(configFileName)
 {

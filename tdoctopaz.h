@@ -1,24 +1,32 @@
-#ifndef TSYNC_H
-#define TSYNC_H
+#ifndef TDOCTOPAZ_H
+#define TDOCTOPAZ_H
 
-#include <QObject>
+//Qt
 #include <QtSql/QSqlDatabase>
-#include <QDateTime>
-#include <QList>
-
-#include "tconfig.h"
+#include <QString>
+#include <QStringList>
 
 namespace CGIDocTopaz
 {
 
 class TDocTopaz
 {
-public:
-    explicit TDocTopaz(TConfig* cfg);
-    ~TDocTopaz();
+private:
+    struct QueryInfo
+    {
+        QStringList AZSCodes;
+        quint64 id;
+        QString queryText;
+    };
+
+    typedef QList<QueryInfo> TQueriesInfoList;
 
 public:
+    explicit TDocTopaz();
+    ~TDocTopaz();
+
     int run(const QString& XMLText);
+    void addQueryToDB(QSqlDatabase& db, QSqlQuery& query, TQueriesInfoList& queriesInfoList);
     QString errorString() const { return _errorString; }
 
 private:
@@ -29,4 +37,4 @@ private:
 
 } //namespace CGIDocTopaz
 
-#endif // TSYNC_H
+#endif // TDOCTOPAZ_H

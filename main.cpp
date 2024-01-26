@@ -9,7 +9,6 @@
 #include "tdoctopaz.h"
 
 using namespace CGIDocTopaz;
-
 using namespace Common;
 
 int main(int argc, char *argv[])
@@ -21,7 +20,7 @@ int main(int argc, char *argv[])
 
     setlocale(LC_CTYPE, ""); //настраиваем локаль
 
-    QString configFileName = a.applicationDirPath() +"/CGIDocTopaz.ini";
+    QString configFileName = QString("%1/%2.ini").arg(QCoreApplication::applicationDirPath()).arg(QCoreApplication::applicationName());
 
     CGIDocTopaz::TConfig* cfg = TConfig::config(configFileName);
 
@@ -44,7 +43,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    CGIDocTopaz::TDocTopaz docTopaz(cfg);
+    TDocTopaz docTopaz;
 
     int res = docTopaz.run(buf); //обрабатываем пришедшие данные
 
@@ -54,6 +53,8 @@ int main(int argc, char *argv[])
     else {
         qDebug() << "OK";
     }
+
+    TConfig::deleteConfig();
 
     return res;
 }

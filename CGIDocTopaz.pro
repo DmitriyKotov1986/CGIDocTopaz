@@ -4,13 +4,15 @@ QT += sql
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
+INCLUDEPATH += $$PWD/../../Common/Headers
+
+LIBS+= -L$$PWD/../../Common/Lib -lCommon
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        Common/common.cpp \
-        Common/tdbloger.cpp \
         main.cpp \
         tconfig.cpp \
         tdoctopaz.cpp
@@ -21,8 +23,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Common/common.h \
-    Common/tdbloger.h \
     tconfig.h \
     tdoctopaz.h \
     tdoctopaz.h
