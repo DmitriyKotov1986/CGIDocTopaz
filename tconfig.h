@@ -5,7 +5,11 @@
 #include <QString>
 #include <QFile>
 
-namespace CGIDocTopaz {
+//My
+#include "Common/common.h"
+
+namespace CGIDocTopaz
+{
 
 class TConfig final
 {
@@ -18,13 +22,7 @@ private:
 
 public:
     //[DATABASE]
-    const QString& db_Driver() const { return _db_Driver; }
-    const QString& db_DBName()  const { return _db_DBName; }
-    const QString& db_UserName() const { return _db_UserName; }
-    const QString& db_Password() const { return _db_Password; }
-    const QString& db_ConnectOptions() const { return _db_ConnectOptions; }
-    const QString& db_Host() const { return _db_Host; }
-    quint16 db_Port() const { return _db_Port; }
+    const Common::DBConnectionInfo& db_ConnectionInfo() const { return _db_ConnectionInfo; }
 
     const QString& errorString() const { return _errorString; }
     bool isError() const { return !_errorString.isEmpty(); }
@@ -35,13 +33,8 @@ private:
     QString _errorString;
 
     //[DATABASE]
-    QString _db_Driver;
-    QString _db_DBName;
-    QString _db_UserName;
-    QString _db_Password;
-    QString _db_ConnectOptions;
-    QString _db_Host;
-    quint16 _db_Port = 0;
+    Common::DBConnectionInfo _db_ConnectionInfo;
+
 };
 
 } //namespace CGITopaz
