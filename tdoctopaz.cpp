@@ -34,7 +34,6 @@ TDocTopaz::~TDocTopaz()
 
 int TDocTopaz::run(const QString& XMLText)
 {
-
     writeDebugLogFile("REQUEST>", XMLText);
 
     QTextStream errStream(stderr);
@@ -552,7 +551,7 @@ TDocTopaz::TQuerySQL TDocTopaz::parseQueries(QXmlStreamReader &XMLReader)
                     tmp.id = XMLReader.readElementText();
                     if (tmp.id.isEmpty() || tmp.id.length() > 25)
                     {
-                         throw std::runtime_error(QString("Incorrect value tag (Root/Queries/Query/%1). Value: %2. Value must be  string shorter than 25 chars")
+                         throw std::runtime_error(QString("Incorrect value tag (Root/Queries/Query/%1). Value: %2. Value must be string shorter than 25 chars")
                                 .arg(XMLReader.name().toString())
                                 .arg(XMLReader.readElementText()).toStdString());
                     }
@@ -562,7 +561,7 @@ TDocTopaz::TQuerySQL TDocTopaz::parseQueries(QXmlStreamReader &XMLReader)
                     tmp.queryText =  XMLReader.readElementText();
                     if (tmp.queryText.isEmpty())
                     {
-                        throw std::runtime_error(QString("Value tag Root/Queries/Query/%1 cannot be empty")
+                        throw std::runtime_error(QString("Value tag (Root/Queries/Query/%1) cannot be empty")
                                                     .arg(XMLReader.name().toString()).toStdString());
                     }
                 }
@@ -937,7 +936,7 @@ QStringList TDocTopaz::parseAZSCodes(QXmlStreamReader &XMLReader, const QString&
             const auto tmpAZSCode =  XMLReader.readElementText();
             if (tmpAZSCode.isEmpty() || tmpAZSCode.length() > 3)
             {
-                throw std::runtime_error(QString("Value tag (Root/SessionsData/SessionData/%2 cannot be empty or longer 3 chars")
+                throw std::runtime_error(QString("Value tag (%1/%2) cannot be empty or longer 3 chars")
                                          .arg(XMLReader.name().toString()).toStdString());
             }
 
